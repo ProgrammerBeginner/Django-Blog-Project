@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static "css/blog/profile.css" %}">
+{% endblock css_files %}
+
+
+{% block page_title %}
+{{ user.first_name }} {{ user.last_name }}'s Profile
+{% endblock page_title %}
+
+
+{% block main-header %}{% include "blog/includes/header.html" %}{% endblock main-header %}
+
+    {% block main-content %}
+    <!-- user info: name, email, password, ...etc -->
+     <div class="user-info-container">
+        <h1>Hello, {{ user.first_name }} {{ user.last_name }}</h1>
+        <p>Email: {{ user.email }}</p>
+     </div>
+    {% endblock main-content %}
+
+{% block main-footer %}{% include "blog/includes/footer.html" %}{% endblock main-footer %}

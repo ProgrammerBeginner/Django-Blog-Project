@@ -1,0 +1,33 @@
+1. Forms methods:
+
+    {{ form.non_field_erros }}
+    {{ form.hidden_fields }} 
+    {{ form.visible_fields }}
+
+
+2. Field Attributes:
+
+    {{ form.field.[  label, # label without (label_suffix)
+
+                        label_tag, # label with the (label_suffix)
+
+                        id_for_label, # the value of id attr
+
+                        value, html_name, # the value of name attr
+
+                        help_text, # 
+
+                        errors, # field validation errors
+
+                        field, # instance of the field, we can use it to access to the field attr, such as: {{ form.field.field.max_length }}
+
+                        is_hidden # true OR false    
+                    ] }}
+
+3. form.is_valid():
+
+    1. True
+
+    2. Stores data to [form.cleaned_data] dictionary!
+
+4. 

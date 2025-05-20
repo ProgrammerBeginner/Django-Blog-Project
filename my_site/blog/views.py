@@ -2,8 +2,14 @@ from django.shortcuts import render, redirect
 from django.views.generic.base import View
 from django.views.generic import DetailView, ListView
 
-from .models import Post, Category, Member
-from .forms import SignUpForm, UserProfileForm, LoginForm, ChangePasswordForm
+from .models import Post, Category, Member, Comment
+from .forms import (
+    SignUpForm,
+    UserProfileForm,
+    LoginForm,
+    ChangePasswordForm,
+    CommentForm,
+)
 
 # Create your views here.
 
@@ -39,10 +45,14 @@ class HomeView(View):
 class PostDetailView(DetailView):
     model = Post
     template_name = "blog/post-details.html"
+    context_object_name = "post"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["is_logged_in"] = self.request.session.get("is_logged_in")
+        context["post_comments"] = Comment.objects.filter(post=self.object)
+        context["has_comments"] = len(context["post_comments"]) > 0
+        return context
 
 
 class SignUpView(View):
@@ -76,7 +86,7 @@ class SignUpView(View):
 
 class UserProfileView(View):
     def get(self, request):
-        user_id = request.session["user_id"]
+        user_id = request.session.get("user_id")
         user = Member.objects.get(pk=user_id)
         user_profile_form = UserProfileForm(instance=user)
         return render(
@@ -89,7 +99,7 @@ class UserProfileView(View):
         )
 
     def post(self, request):
-        user_id = request.session["user_id"]
+        user_id = request.session.get("user_id")
         user = Member.objects.get(pk=user_id)
         user_profile_form = UserProfileForm(request.POST, instance=user)
 
@@ -107,7 +117,6 @@ class UserProfileView(View):
             )
 
 
-# change_password_form
 class ChangePasswordView(View):
     def get(self, request):
         change_password_form = ChangePasswordForm()
@@ -122,7 +131,7 @@ class ChangePasswordView(View):
 
     def post(self, request):
         change_password_form = ChangePasswordForm(request.POST)
-        user_id = request.session["user_id"]
+        user_id = request.session.get("user_id")
         user = Member.objects.get(pk=user_id)
 
         if change_password_form.is_valid():
@@ -210,5 +219,30 @@ class LogoutView(View):
 
 
 class SpecificCategoryView(View):
+    def get(self, request, slug):
+        category_posts = Post.objects.filter(category__slug=slug)
+        has_posts = category_posts.count() > 0
+        return render(
+            request,
+            "blog/specific-category.html",
+            {
+                "has_posts": has_posts,
+                "category_posts": category_posts,
+            },
+        )
+
+
+class AddCommentView(View):
     def get(self, request):
+        comment_form = CommentForm()
+        return render(
+            request,
+            "blog/post-details.html",
+            {
+                "comments_form": comment_form,
+                "is_logged_in": request.session.get("is_logged_in"),
+            },
+        )
+
+    def post(self, request):
         pass

@@ -40,9 +40,7 @@ class Post(models.Model):
         return reverse("post-detail", args=[self.slug])
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(
-            f"{self.title} + {self.category.name} + {str(self.created_at)}"
-        )
+        self.slug = slugify(f"{self.title} + {self.category.name}")
         return super().save(*args, **kwargs)
 
 

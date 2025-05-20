@@ -11,14 +11,11 @@
             <li id="category-drop-down-list">
                 <a href="#">Category</a>
                 <ul>
-                    <li><a href="{% url "search-category" slug='batabase' %}">Database</a></li>
-                    <li><a href="{% url "search-category" slug='programming-languages'%}">Programming Languages</a></li>
-                    <li><a href="{% url "search-category" slug='full-stack'%}">Full-Stack</a></li>
-                    <li><a href="{% url "search-category" slug='back-end'%}">Back-End</a></li>
-                    <li><a href="{% url "search-category" slug='front-end'%}">Front-End</a></li>
-                    {% comment %} {% for category    in categories %}
-                    <li><a href="#">{{category.name}}</a></li>
-                    {% endfor %} {% endcomment %}
+                    <li><a href="{% url "category" slug='database' %}">Database</a></li>
+                    <li><a href="{% url "category" slug='programming-languages'%}">Programming Languages</a></li>
+                    <li><a href="{% url "category" slug='full-stack'%}">Full-Stack</a></li>
+                    <li><a href="{% url "category" slug='back-end'%}">Back-End</a></li>
+                    <li><a href="{% url "category" slug='front-end'%}">Front-End</a></li>
                 </ul>
             </li>
             {% if is_logged_in %}

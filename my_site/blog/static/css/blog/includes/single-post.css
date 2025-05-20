@@ -1,5 +1,5 @@
 .single-post {
-    flex: 0 1 calc((100% - 2rem) / 3);
+    flex: 0 1 calc((100% - 1rem) / 3);
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
@@ -33,6 +33,7 @@
 @media (min-width:320px) and (max-width: 479px) {
     .single-post {
         flex: 0 1 100%;
+        padding: 1rem;
     }
 }
 
@@ -57,7 +58,7 @@
     }
 }
 
-@media (min-width:1025px) and (max-width: 1280px) {
+@media (min-width:1025px) {
     .single-post {
         flex: 1 1 0;
         max-width: calc((100% - 2rem) / 3);

@@ -14,6 +14,16 @@
 {% block main-header %}{% include "blog/includes/header.html" %}{% endblock main-header %}
 
     {% block main-content %}
+        {% if has_posts %}
+        <h1 id="main-title">All Posts</h1>
+        <ul class="posts-list">
+            {% for post in category_posts %}
+            {% include "blog/includes/single-post.html" with post=post%}
+            {% endfor %}
+        </ul>
+        {% else %}
+        <h1 class="no-posts-message">Sorry! No Posts!</h1>
+        {% endif %}
     {% endblock main-content %}
 
 {% block main-footer %}{% include "blog/includes/footer.html" %}{% endblock main-footer %}

@@ -30,4 +30,18 @@
 
     2. Stores data to [form.cleaned_data] dictionary!
 
-4. 
+4. To access the object in the (CBV) Class Based-View use 
+    
+    a. [ self.object] / [ self.get_object() ]
+
+5. in [ self.get_object(slug=slug) ] we can use it as get() method, 
+
+   we can use it with conditions.
+
+6. الفرق بين self و كذلك self.object بداخل CBV:
+
+    a. self         ---> references to the CBV itself
+    b. self.object  ---> references to the object that the CBV fetch
+
+
+7. 

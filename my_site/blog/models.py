@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.core.validators import MinLengthValidator
 from django.utils.text import slugify
 
 # Create your models here.
@@ -49,9 +50,9 @@ class Member(models.Model):
     first_name = models.CharField("First Name", max_length=50)
     last_name = models.CharField("Last Name", max_length=50)
     email = models.EmailField(max_length=254, unique=True)
-    password = models.CharField()
+    password = models.CharField(validators=[MinLengthValidator(8)], max_length=250)
     phone_number = models.CharField(max_length=50, blank=True, null=True)
-    # address = models.CharField(max_length=250)
+    address = models.CharField(max_length=250)
     joined_date = models.DateField(auto_now_add=True)
     slug = models.SlugField(db_index=True, unique=True)
 

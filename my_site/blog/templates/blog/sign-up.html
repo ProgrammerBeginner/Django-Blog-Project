@@ -17,13 +17,8 @@ Sign Up
             <form action="{% url "sign-up" %}" method="POST">
                 {% csrf_token %}
                 <ul>
-                    {% for field in sign_up_form %}
-                    <div class="single-field {% if field.errors %}errors{% endif %}">
-                        {{ field.label_tag }}
-                        {{ field }}
-                        {{ field.errors }}
-                    </div>
-                    {% endfor %}
+                    {% comment %} SignUp Form {% endcomment %}
+                    {% include "blog/includes/form-snippet.html" with form=sign_up_form%}
                 </ul>
                 <button id="sign-up-btn">Sign Up</button>
             </form>

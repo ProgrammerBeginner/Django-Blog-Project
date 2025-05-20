@@ -11,6 +11,25 @@ class SignUpForm(forms.ModelForm):
         exclude = ("joined_date", "slug")
 
 
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = Member
+        exclude = ("password", "joined_date", "slug")
+
+
+class ChangePasswordForm(forms.ModelForm):
+    password = forms.CharField(
+        label="Your Password", widget=forms.PasswordInput, min_length=8
+    )
+
+    class Meta:
+        model = Member
+        fields = ("password",)
+
+    new_password = forms.CharField(widget=forms.PasswordInput, min_length=8)
+    confirm_password = forms.CharField(widget=forms.PasswordInput, min_length=8)
+
+
 class LoginForm(forms.Form):
     email = forms.EmailField(label="Your Email")
     password = forms.CharField(

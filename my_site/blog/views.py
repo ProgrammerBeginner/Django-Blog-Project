@@ -252,7 +252,7 @@ class AddCommentView(View):
                 comment.member = user
                 comment.post = post
                 comment.save()
-            return redirect("post-details/" + post.slug)
+            return redirect("/post-details/" + post.slug)
 
         except:
             return render(

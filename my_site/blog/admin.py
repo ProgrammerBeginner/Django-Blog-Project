@@ -34,4 +34,7 @@ class MemberAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ("member", "post", "created_at")
-    list_filter = ("created_at",)
+    list_filter = (
+        "post",
+        "created_at",
+    )

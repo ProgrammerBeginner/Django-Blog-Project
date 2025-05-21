@@ -20,5 +20,5 @@ urlpatterns = [
     path(
         "add-new-comment/<slug:slug>", views.AddCommentView.as_view(), name="comments"
     ),
-    path("search/<slug:slug>", views.PostDetailView.as_view(), name="search-category"),
+    path("posts-search/", views.SearchedPostsView.as_view(), name="posts-search"),
 ]

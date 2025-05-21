@@ -28,8 +28,8 @@
     </nav>
 
   <div id="search-box">
-        <form action="" method="GET">
-            <input id="search-bar" type="search" name="search-bar" placeholder="Search here ...">
+        <form action="{% url "posts-search" %}" method="GET">
+            <input id="search-bar" type="search" name="search_bar" placeholder="Search for posts ...">
             <button id="search-btn">Search</button>
         </form>
     </div>

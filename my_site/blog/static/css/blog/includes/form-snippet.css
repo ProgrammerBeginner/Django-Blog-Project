@@ -7,6 +7,7 @@
 .single-field label {
     font-size: 1.3rem;
     font-weight: 600;
+    margin-bottom: 0.5rem;
 }
 
 .single-field input {
@@ -42,6 +43,7 @@
     }
 
     .single-field input {
+        font-size: 0.8rem;
         padding: 0.3rem;
         border: 1px solid #aaa;
         border-radius: 4px;

@@ -19,7 +19,7 @@ class UserProfileForm(forms.ModelForm):
 
 class ChangePasswordForm(forms.ModelForm):
     password = forms.CharField(
-        label="Your Password", widget=forms.PasswordInput, min_length=8
+        label="Old password", widget=forms.PasswordInput, min_length=8
     )
 
     class Meta:
@@ -38,6 +38,8 @@ class LoginForm(forms.Form):
 
 
 class CommentForm(forms.ModelForm):
+    comment_text = forms.CharField(label="Your Comment", widget=forms.Textarea)
+
     class Meta:
         model = Comment
         fields = ("comment_text",)

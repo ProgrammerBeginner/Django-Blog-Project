@@ -1,5 +1,6 @@
 .single-post {
     flex: 0 1 calc((100% - 1rem) / 3);
+    padding: 100%;
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
